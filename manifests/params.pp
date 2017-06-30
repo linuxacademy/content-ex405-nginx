@@ -10,17 +10,17 @@ class nginx::params {
   $config_log_dir = '/var/log/nginx'
   $config_pid_file = '/run/nginx.pid'
   
-  $config_vdir_enable = $facts['os']['family'] ? {
+  $config_vdir_enable = $::osfamily ? {
     'Debian' => $config_dir,
     default  => undef,
   }
 
-  $config_process_user = $facts['os']['family'] ? {
+  $config_process_user = $::osfamily ? {
     'Debian' => 'www-data',
     default  => 'nginx',
   }
   
-  $vhost_dir = $facts['os']['family'] ? {
+  $vhost_dir = $::osfamily ? {
     'Debian' => "${config_dir}/sites-eanbled",
     default  => $config_confd,
   }
